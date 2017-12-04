@@ -6,9 +6,15 @@ function testNoteModelArray() {
 testNoteModelArray()
 
 function testCreateAndStoreNote() {
-  var noteList = new NoteList();
-  noteList.createAndStoreNote('My favourite language is JavaScript')
-  assert.isTrue(noteList.notes[0].returnText() === 'My favourite language is JavaScript')
+  var noteList = new NoteList(DoubleNote);
+  noteList.createAndStoreNote()
+  assert.isTrue(noteList.notes[0] instanceof DoubleNote)
 }
 
 testCreateAndStoreNote()
+
+// DOUBLES
+
+function DoubleNote(){
+
+}
