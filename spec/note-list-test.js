@@ -16,7 +16,7 @@ testCreateAndStoreNote()
 function testReturnAllNotes () {
   var noteList = new NoteList(DoubleNote)
   noteList.createAndStoreNote()
-  assert.isTrue(noteList.returnAllNotes() instanceof DoubleNote )
+  assert.isTrue(noteList.returnAllNotes() instanceof Array)
 }
 
 testReturnAllNotes()
