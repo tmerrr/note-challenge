@@ -13,6 +13,13 @@ function testCreateAndStoreNote() {
 
 testCreateAndStoreNote()
 
+function testReturnAllNotes () {
+  var noteList = new NoteList(DoubleNote)
+  noteList.createAndStoreNote()
+  assert.isTrue(noteList.returnAllNotes() instanceof DoubleNote )
+}
+
+testReturnAllNotes()
 // DOUBLES
 
 function DoubleNote(){
