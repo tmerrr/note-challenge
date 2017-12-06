@@ -20,3 +20,8 @@ describe('converts notelist to HTML', function(){
   var noteListView = new NoteListView(new DoubleNoteList([new DoubleNote('hello')]))
   return assert.isTrue(noteListView.noteListModelToHTML() === "<ul><li><div>hello</div></li></ul>")
 });
+
+describe('trims a string to 20 characters', function(){
+  var noteListView = new NoteListView(new DoubleNoteList([new DoubleNote('the quick brown dog jumped over the lazy fox')]))
+  return assert.isTrue(noteListView.noteListModelToHTML() === '<ul><li><div>the quick brown dog </div></li></ul>')
+});

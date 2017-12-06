@@ -17,8 +17,8 @@ describe('checks that notecontroller is instantiated', function(){
 });
 
 describe('checks that HTML is rendered to page', function(){
-  var noteListController = new NoteController(DoubleNoteList, DoubleNoteListView)
+  var noteListController = new NoteController(new DoubleNoteListView(new DoubleNoteList()))
   elem = document.getElementById('app')
   noteListController.renderHTML()
-  return assert.isTrue(document.getElementById('app').innerHTML === '<ul><li><div>test note</div></li></ul>')
+  return assert.isTrue(elem.innerHTML === '<ul><li><div>test note</div></li></ul>')
 });
