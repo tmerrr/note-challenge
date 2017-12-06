@@ -16,9 +16,7 @@ DoubleNoteList.prototype = {
 
 // TESTS
 
-function testNoteListModelToHTML() {
+describe('converts notelist to HTML', function(){
   var noteListView = new NoteListView(new DoubleNoteList([new DoubleNote('hello')]))
-  assert.isTrue(noteListView.noteListModelToHTML() === "<ul><li><div>hello</div></li></ul>")
-}
-
-testNoteListModelToHTML()
+  return assert.isTrue(noteListView.noteListModelToHTML() === "<ul><li><div>hello</div></li></ul>")
+});

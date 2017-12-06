@@ -1,9 +1,9 @@
 var assert = {
   isTrue: function(assertionToCheck) {
     if (!assertionToCheck) {
-      throw("Assertion failed: expected "  + assertionToCheck + " to be true")
+      throw new Error("<p style='color: red; font-weight: bold'> Assertion failed: expected "  + assertionToCheck + " to be true </p>")
     } else {
-      console.log('Test is passing!')
+      return "<p style='color: green; font-weight: bold'> Test is passing!</p>"
     }
   }
 }
