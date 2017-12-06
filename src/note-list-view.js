@@ -10,7 +10,7 @@
 
   NoteListView.prototype.putInListElements = function(){
     textarr = this.noteListModel.notes.map(function(note){
-      return "<li><div>" + note.text.slice(0, 20) + "</div></li>"
+      return `<li><div><a href="#${note.id}">${note.text.slice(0, 20)}</a></div></li>`
     });
     return textarr.join('')
   }

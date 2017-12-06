@@ -22,7 +22,6 @@ describe('ID is incremented and assigned to a Note on creation', function () {
   noteList.createAndStoreNote('hi')
   noteList.createAndStoreNote('hello')
   noteList.createAndStoreNote('hello world')
-  console.log(noteList.returnAllNotes())
   return assert.isTrue(noteList.returnAllNotes()[2].id === 3)
 })
 

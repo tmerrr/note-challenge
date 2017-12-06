@@ -13,5 +13,9 @@
     elem.innerHTML = this.noteListView.noteListModelToHTML()
   }
 
+  NoteController.prototype.getNoteIdFromHash = function (url) {
+    return url.split('#')[1]
+  }
+
   exports.NoteController = NoteController;
 })(this)
