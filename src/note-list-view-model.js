@@ -1,7 +1,7 @@
 (function(exports) {
 
-  function NoteListView(notelist = NoteList){
-    this.noteListModel = new notelist()
+  function NoteListView(notelist){
+    this.noteListModel = notelist
   }
 
   NoteListView.prototype.noteListModelToHTML = function(){
@@ -9,22 +9,16 @@
   }
 
   NoteListView.prototype.putInListElements = function(){
-    textarr = []
-    this.noteListModel.notes.forEach(function(note){
-      textarr.push(PutInLiAndDiv(note.text))
+    textarr = this.noteListModel.notes.map(function(note){
+      return "<li><div>" + note.text + "</div></li>"
     });
     return textarr.join('')
-  }
-
-  function PutInLiAndDiv(notetext){
-    return "<li><div>" + notetext + "</div></li>"
   }
 
   function PutInUnorderedList(list){
     return "<ul>" + list + "</ul>"
   }
 
-  exports.PutInLiAndDiv = PutInLiAndDiv;
   exports.NoteListView = NoteListView;
   exports.PutInUnorderedList = PutInUnorderedList;
 })(this);
