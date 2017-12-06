@@ -1,7 +1,6 @@
 (function (exports) {
 
   function NoteController(notelistview = new NoteListView(new NoteList())){
-    // this.notelist = notelist;
     this.noteListView = notelistview
   }
 
