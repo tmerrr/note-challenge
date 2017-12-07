@@ -1,6 +1,6 @@
 (function(exports) {
 
-  function NoteListView(notelist){
+  function NoteListView(notelist = new NoteList){
     this.noteListModel = notelist
   }
 

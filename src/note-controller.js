@@ -14,15 +14,26 @@
       elem.innerHTML = this.noteListView.noteListModelToHTML()
     },
 
-    openNote: function () {
-      var singleNote = document.getElementById('single-note')
-      singleNote.innerHTML = '<div>the quick brown fox jumped over the lazy dog</div>'
+    createSingleNoteView: function (note) {
+      var singleNoteDiv = document.getElementById('single-note')
+      var noteId = this.getIdFromHash();
+      var singleNote = note || this.getNote (noteId)
+      singleNote = new SingleNoteView(singleNote)
+      singleNoteDiv.innerHTML = singleNote.noteTextToHTML();
     },
 
-    getNoteIdFromHash: function (url) {
-      return url.split('#')[1]
-    }
+    getNote: function (id) {
+      return this.noteListView.noteListModel.notes[id - 1]
+    },
 
+    getIdFromHash: function () {
+      return Number(window.location.href.split('#')[1])
+    },
+
+  }
+
+  NoteController.prototype.openNote = function () {
+    window.addEventListener("hashchange", this.createSingleNoteView())
   }
 
   exports.NoteController = NoteController;
