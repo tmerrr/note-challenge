@@ -58,7 +58,6 @@ describe ('Note Contoller', function () {
     changeUrlHashTo(1)
     noteListController.createNote('the quick brown dog jumped over the lazy fox')
     noteListController.openNote()
-    console.log(noteListController.getNote(noteListController.getIdFromHash))
     expect(singleNote.innerText).toEqual('the quick brown dog jumped over the lazy fox')
   })
 })
