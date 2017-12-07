@@ -19,14 +19,14 @@ function changeUrlHashTo (number) {
 
 describe ('Note Contoller', function () {
   it('checks that notecontroller is instantiated', function(){
-    return expect(new NoteController()).toBeInstanceOf(NoteController)
+    expect(new NoteController()).toBeInstanceOf(NoteController)
   });
 
   it('checks that HTML is rendered to page', function(){
     var noteListController = new NoteController(new DoubleNoteListView(new DoubleNoteList()))
     elem = document.getElementById('app')
     noteListController.renderHTML()
-    return expect(elem.innerHTML).toEqual('<ul><li><div>test note</div></li></ul>')
+    expect(elem.innerHTML).toEqual('<ul><li><div>test note</div></li></ul>')
   });
 
   it('can search for a specific not based on the ID', function () {
@@ -35,13 +35,13 @@ describe ('Note Contoller', function () {
     noteListController.createNote('hello world')
     noteListController.createNote('hi')
     var note = noteListController.getNote(2)
-    return expect(note.returnText()).toEqual('hello world')
+    expect(note.returnText()).toEqual('hello world')
   })
 
   it('gets ID from the current url', function () {
     changeUrlHashTo(2)
     var noteListController = new NoteController();
-    return expect(noteListController.getIdFromHash()).toEqual(2)
+    expect(noteListController.getIdFromHash()).toEqual(2)
   })
 
   it('whole note is displayed', function() {
@@ -49,7 +49,7 @@ describe ('Note Contoller', function () {
     var singleNote = document.getElementById('single-note')
     note = new Note ('the quick brown fox jumped over the lazy dog')
     noteListController.createSingleNoteView(note);
-    return expect(singleNote.innerText).toEqual('the quick brown fox jumped over the lazy dog');
+    expect(singleNote.innerText).toEqual('the quick brown fox jumped over the lazy dog');
   });
 
   it('uses an event listener to print text from a single note to the page', function () {
@@ -59,6 +59,6 @@ describe ('Note Contoller', function () {
     noteListController.createNote('the quick brown dog jumped over the lazy fox')
     noteListController.openNote()
     console.log(noteListController.getNote(noteListController.getIdFromHash))
-    return expect(singleNote.innerText).toEqual('the quick brown dog jumped over the lazy fox')
+    expect(singleNote.innerText).toEqual('the quick brown dog jumped over the lazy fox')
   })
 })

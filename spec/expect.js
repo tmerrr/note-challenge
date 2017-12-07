@@ -5,17 +5,13 @@
 
   Expectation.prototype = {
     toEqual: function (value) {
-      if (this._expectation.valueOf() === value) {
-        return 'Test Passed'
-      } else {
+      if (this._expectation.valueOf() !== value) {
         throw new Error(`Failure: Expected ${value} but returned ${this._expectation.valueOf()}`)
       }
     },
 
     toBeInstanceOf: function (objectType) {
-      if (this._expectation instanceof objectType) {
-        return 'Test Passed'
-      } else {
+      if (!(this._expectation instanceof objectType)) {
         throw new Error(`Failure: Expected value to be ${objectType.name} but returned ${this._expectation.constructor.name}`)
       }
     }

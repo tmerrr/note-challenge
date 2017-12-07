@@ -9,13 +9,13 @@ DoubleNote.prototype.returnText = function () {
 describe('Single Note View', function () {
   it ('can instantiate a SingleNoteView with a Note', function () {
     var singleNoteView = new SingleNoteView(new DoubleNote('Hi Lewis'))
-    return expect(singleNoteView._note).toBeInstanceOf(DoubleNote)
+    expect(singleNoteView._note).toBeInstanceOf(DoubleNote)
   })
 
   it('returns text from Note as HTML', function () {
     var singleNoteView = new SingleNoteView(new DoubleNote('Hi Lewis'))
     HTMLstring = "<div>Hi Lewis</div>";
-    return expect(singleNoteView.noteTextToHTML()).toEqual(HTMLstring);
+    expect(singleNoteView.noteTextToHTML()).toEqual(HTMLstring);
   })
-  
+
 })
