@@ -1,14 +1,10 @@
-  (function (exports) {
+(function (exports) {
+  function describe (objectToTest, describeBlock) {
+    var output = document.getElementById('tests')
+    output.innerHTML += `<h3>${objectToTest}</h3>`
+    describeBlock()
+  }
 
-    function describe(string, method) {
-      elem = document.getElementById('tests')
-      try {
-        elem.innerHTML += `<li style="font-weight: bold; font-size: 15px">${string}</li>${method()}`
-      }
-      catch(error) {
-        elem.innerHTML += `<li style="font-weight: bold; font-size: 15px">${string}</li>${error.message}`
-      }
-    }
+  exports.describe = describe;
 
-    exports.describe = describe;
-  })(this);
+})(this)

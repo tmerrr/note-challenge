@@ -15,10 +15,5 @@
     return textarr.join('')
   }
 
-  function PutInUnorderedList(list){
-    return "<ul>" + list + "</ul>"
-  }
-
   exports.NoteListView = NoteListView;
-  exports.PutInUnorderedList = PutInUnorderedList;
 })(this);

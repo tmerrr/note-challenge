@@ -6,26 +6,29 @@ function DoubleNote(text, id = 0){
 
 // TESTS
 
-describe('checks that it instantiates with an empty array', function(){
-  var noteList = new NoteList();
-  return assert.isTrue(noteList.notes.length === 0)
-});
+describe ('Note List Model', function () {
+  it('checks that it instantiates with an empty array', function(){
+    var noteList = new NoteList();
+    return expect(noteList.notes.length).toEqual(0)
+  });
 
-describe('checks that create and store note adds the note to array', function(){
-  var noteList = new NoteList(DoubleNote);
-  noteList.createAndStoreNote()
-  return assert.isTrue(noteList.notes[0] instanceof DoubleNote)
-});
+  it('checks that create and store note adds the note to array', function(){
+    var noteList = new NoteList(DoubleNote);
+    noteList.createAndStoreNote()
+    return expect(noteList.notes[0]).toBeInstanceOf(DoubleNote)
+  });
 
-describe('ID is incremented and assigned to a Note on creation', function () {
-  var noteList = new NoteList(DoubleNote)
-  noteList.createAndStoreNote('hi')
-  noteList.createAndStoreNote('hello')
-  noteList.createAndStoreNote('hello world')
-  return assert.isTrue(noteList.returnAllNotes()[2].id === 3)
+  it('ID is incremented and assigned to a Note on creation', function () {
+    var noteList = new NoteList(DoubleNote)
+    noteList.createAndStoreNote('hi')
+    noteList.createAndStoreNote('hello')
+    noteList.createAndStoreNote('hello world')
+    return expect(noteList.returnAllNotes()[2].id).toEqual(3)
+  })
+
+  it('checks getter method returns array', function(){
+    var noteList = new NoteList(DoubleNote)
+    return expect(noteList.returnAllNotes()).toBeInstanceOf(Array)
+  });
+
 })
-
-describe('checks getter method returns array', function(){
-  var noteList = new NoteList(DoubleNote)
-  return assert.isTrue(noteList.returnAllNotes() instanceof Array)
-});
