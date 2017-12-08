@@ -1,40 +1,45 @@
 (function (exports) {
 
-  function NoteController(notelistview = new NoteListView(new NoteList())){
-    this.noteListView = notelistview
+  function NoteController (noteListView = new NoteListView(new NoteList () )) {
+    this.noteListView = noteListView
   }
 
-  NoteController.prototype = {
-    createNote: function (text) {
-      this.noteListView.noteListModel.createAndStoreNote(text)
-    },
-
-    renderHTML: function () {
-      var elem = document.getElementById('app')
-      elem.innerHTML = this.noteListView.noteListModelToHTML()
-    },
-
-    createSingleNoteView: function (note) {
-      var singleNoteDiv = document.getElementById('single-note')
-      var noteId = this.getIdFromHash();
-      var singleNote = note || this.getNote (noteId)
-      singleNote = new SingleNoteView(singleNote)
-      singleNoteDiv.innerHTML = singleNote.noteTextToHTML();
-    },
-
-    getNote: function (id) {
-      return this.noteListView.noteListModel.notes[id - 1]
-    },
-
-    getIdFromHash: function () {
-      return Number(window.location.href.split('#')[1])
-    },
-
+  NoteController.prototype.createNote = function (text) {
+    this.noteListView.noteListModel.createAndStoreNote(text);
+    this.renderHTML()
   }
 
-  NoteController.prototype.openNote = function () {
-    window.addEventListener("hashchange", this.createSingleNoteView())
+  NoteController.prototype.renderHTML = function () {
+    var elem = document.getElementById('notes')
+    elem.innerHTML = this.noteListView.noteListModelToHTML()
   }
+
+  NoteController.prototype.getAllNotes = function () {
+  return this.noteListView.noteListModel.notes;
+  }
+
+  NoteController.prototype.getIdFromHash = function () {
+    return Number(window.location.hash.split('#')[1])
+  }
+
+  NoteController.prototype.getNote = function (id) {
+    return this.getAllNotes()[id - 1]
+  }
+
+  NoteController.prototype.createSingleNoteView = function (note) {
+    var singleNoteDiv = document.getElementById(`note${note.id}`)
+    var singleNote = new SingleNoteView(note)
+    singleNoteDiv.innerHTML = singleNote.noteTextToHTML();
+  }
+
+  NoteController.prototype.openNoteListener = function () {
+    var noteController = this;
+    window.addEventListener("hashchange", function() {
+      var noteId = noteController.getIdFromHash();
+      noteController.createSingleNoteView(noteController.getNote (noteId))
+    })
+  }
+
 
   exports.NoteController = NoteController;
 })(this)

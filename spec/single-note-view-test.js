@@ -14,7 +14,7 @@ describe('Single Note View', function () {
 
   it('returns text from Note as HTML', function () {
     var singleNoteView = new SingleNoteView(new DoubleNote('Hi Lewis'))
-    HTMLstring = "<div>Hi Lewis</div>";
+    HTMLstring = "Hi Lewis";
     expect(singleNoteView.noteTextToHTML()).toEqual(HTMLstring);
   })
 

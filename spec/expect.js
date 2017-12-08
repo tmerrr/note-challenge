@@ -14,6 +14,12 @@
       if (!(this._expectation instanceof objectType)) {
         throw new Error(`Failure: Expected value to be ${objectType.name} but returned ${this._expectation.constructor.name}`)
       }
+    },
+
+    toInclude: function (value) {
+      if (!(this._expectation.includes(value))) {
+        throw new Error(`Failure: ${value} not found within ${this._expectation}`)
+      }
     }
 
   }

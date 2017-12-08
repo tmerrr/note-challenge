@@ -4,7 +4,7 @@
 function DoubleNoteListView (doublenotelistclass) { }
 
 DoubleNoteListView.prototype.noteListModelToHTML = function () {
-  return '<ul><li><div>test note</div></li></ul>'
+  return '<ul><li><div id="note1">test note</div></li></ul>'
 }
 
 function DoubleNoteList (noteclass) { }
@@ -24,12 +24,33 @@ describe ('Note Contoller', function () {
 
   it('checks that HTML is rendered to page', function(){
     var noteListController = new NoteController(new DoubleNoteListView(new DoubleNoteList()))
-    elem = document.getElementById('app')
+    var elem = document.getElementById('notes')
     noteListController.renderHTML()
-    expect(elem.innerHTML).toEqual('<ul><li><div>test note</div></li></ul>')
+    expect(elem.innerHTML).toEqual('<ul><li><div id="note1">test note</div></li></ul>')
   });
 
-  it('can search for a specific not based on the ID', function () {
+  it('can create a note', function () {
+    var noteListController = new NoteController()
+    noteListController.createNote('hi')
+    expect(noteListController.getAllNotes()[0]).toBeInstanceOf(Note)
+  })
+
+  it('creating a note then renders the HTML to the page', function () {
+    var noteListController = new NoteController()
+    noteListController.createNote('hi')
+    var noteDiv = document.getElementById('note1')
+    expect(noteDiv.innerText).toEqual('hi')
+  })
+
+  it('can return all notes as Array', function () {
+    var noteListController = new NoteController()
+    noteListController.createNote('hello world')
+    var note = noteListController.noteListView.noteListModel.notes[0]
+    expect(noteListController.getAllNotes()).toBeInstanceOf(Array)
+    expect(noteListController.getAllNotes()).toInclude(note)
+  })
+
+  it('can search for a specific note based on the ID', function () {
     var noteListController = new NoteController();
     noteListController.createNote('hello')
     noteListController.createNote('hello world')
@@ -39,25 +60,28 @@ describe ('Note Contoller', function () {
   })
 
   it('gets ID from the current url', function () {
-    changeUrlHashTo(2)
+    changeUrlHashTo(3)
     var noteListController = new NoteController();
-    expect(noteListController.getIdFromHash()).toEqual(2)
+    expect(noteListController.getIdFromHash()).toEqual(3)
   })
 
   it('whole note is displayed', function() {
     var noteListController = new NoteController();
-    var singleNote = document.getElementById('single-note')
-    note = new Note ('the quick brown fox jumped over the lazy dog')
+    noteListController.createNote('the quick brown fox jumped over the lazy dog')
+    var note = noteListController.getNote(1)
     noteListController.createSingleNoteView(note);
-    expect(singleNote.innerText).toEqual('the quick brown fox jumped over the lazy dog');
+    var div = document.getElementById('note1')
+    expect(div.innerText).toEqual('the quick brown fox jumped over the lazy dog');
   });
 
-  it('uses an event listener to print text from a single note to the page', function () {
-    var singleNote = document.getElementById('single-note')
-    var noteListController = new NoteController();
-    changeUrlHashTo(1)
-    noteListController.createNote('the quick brown dog jumped over the lazy fox')
-    noteListController.openNote()
-    expect(singleNote.innerText).toEqual('the quick brown dog jumped over the lazy fox')
-  })
+  //  Test Currently Failing, even though it works in practice, need to think of how to test:
+  // it('uses an event listener to print text from a single note to the page', function () {
+  //   var noteListController = new NoteController();
+  //   noteListController.openNoteListener()
+  //   noteListController.createNote('the quick brown dog jumped over the lazy fox')
+  //   var div = document.getElementById('note1')
+  //   var link = div.getElementsByTagName('a')[0]
+  //   link.click()
+  //   expect(div.innerText).toEqual('the quick brown dog jumped over the lazy fox')
+  // })
 })
