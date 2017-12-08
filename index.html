@@ -8,18 +8,15 @@
 <body>
   <div>
     <h1>Create a Note</h1>
-    <form>
-        <input type="text" name="note-text" placeholder="Write your note here...">
+    <form id="new-note-form" action="/notes/create" method="post">
+        <textarea rows="4" cols="50" id="note-text" placeholder="Write your note here..."></textarea>
+        <br><br>
         <input type="submit" name="create-note" value="Create Note">
     </form>
   </div>
 
+  <h1>Your Notes:</h1>
   <div id="notes">
-    <h1>Your Notes:</h1>
-  </div>
-
-  <div id="single-note">
-
   </div>
 
 </body>
@@ -30,3 +27,8 @@
 <script src="src/note-controller.js"></script>
 <script src="src/single-note-view.js"></script>
 <script src="src/appHelpers.js"></script>
+<script type="text/javascript">
+  const noteController = new NoteController();
+  noteController.onSubmit();
+  noteController.openNoteListener();
+</script>

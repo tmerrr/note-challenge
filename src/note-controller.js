@@ -5,8 +5,10 @@
   }
 
   NoteController.prototype.createNote = function (text) {
-    this.noteListView.noteListModel.createAndStoreNote(text);
-    this.renderHTML()
+    if (text.length > 0) {
+      this.noteListView.noteListModel.createAndStoreNote(text);
+      this.renderHTML()
+    }
   }
 
   NoteController.prototype.renderHTML = function () {
@@ -39,6 +41,17 @@
       noteController.createSingleNoteView(noteController.getNote (noteId))
     })
   }
+
+  NoteController.prototype.onSubmit = function () {
+    var noteController = this;
+    var newNoteForm = document.getElementById('new-note-form')
+    var textBox = document.getElementById('note-text')
+    newNoteForm.addEventListener("submit", function() {
+      event.preventDefault();
+      noteController.createNote(event.srcElement.children[0].value)
+      textBox.value = ''
+    })
+  };
 
 
   exports.NoteController = NoteController;

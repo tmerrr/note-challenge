@@ -15,9 +15,21 @@
     </ol>
   </div>
 
-  <div id="app" style="display: none">hello</div>
-  <div id="notes" style="display: none"></div>
-  <div id="single-note" style="display: none"></div>
+  <div name="mockIndexPage" style="display: none;">
+    <div>
+      <h1>Create a Note</h1>
+      <form id="new-note-form" action="/notes/create" method="post">
+          <textarea rows="4" cols="50" id="note-text" placeholder="Write your note here..."></textarea>
+          <br><br>
+          <input type="submit" id="create-note" value="Create Note">
+      </form>
+    </div>
+
+    <h1>Your Notes:</h1>
+    <div id="notes">
+    </div>
+
+  </div>
 
 </body>
 
@@ -37,3 +49,4 @@
 <script src="spec/note-list-view-test.js"></script>
 <script src="spec/single-note-view-test.js"></script>
 <script src="spec/note-controller-test.js"></script>
+<script src="spec/feature-test.js"></script>
