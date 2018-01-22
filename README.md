@@ -3,9 +3,9 @@
 ### Brief Summary:
 Week 7 Challenge from Makers Academy:
 
-"Build a notes app as a frontend, single page web app. You'll be guided through this by the high-level challenges listed below. However, there will be no walkthroughs.
+*"Build a notes app as a frontend, single page web app. You'll be guided through this by the high-level challenges listed below. However, there will be no walkthroughs.*
 
-To get an idea of what you'll be building, here are [some user stories](./user-stories.md) for the notes app. (This is just to give you an idea of the app. You'll work through the challenges below to build it.)"
+*To get an idea of what you'll be building, here are [some user stories](./user-stories.md) for the notes app. (This is just to give you an idea of the app. You'll work through the challenges below to build it.)"*
 
 This was written completely in Vanilla JavaScript and without the use of any test libraries.
 
